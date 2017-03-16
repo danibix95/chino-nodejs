@@ -1,0 +1,33 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: "Raleway", sans-serif;
+  background-color: #fafafa;
+}
+
+.home {
+  position: absolute;
+  top: 1em;
+  right: 1.5em;
+}
+.home a {
+  padding: 0 0.4em;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+}
+
+table {
+  border: 1px solid #333333;
+}
+
+table tr:nth-child(even) {
+  background-color: #dedede;
+}
+
+table tr td {
+  padding: 0.4em 0.8em;
+}

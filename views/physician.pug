@@ -1,0 +1,36 @@
+extends layout.pug
+
+block title
+  title= "Physician - Chino API test"
+
+block style
+  link(rel="stylesheet" href="/css/physician.css")
+
+block content
+  .home
+    a(href="/") Home
+    a(href="/logout") Logout
+  
+  .container
+    h1 Physician Area
+    p Here doctor can chose a patient from its patients and create a new recipe for him/her. 
+
+    form(action="/addRecipe" method="POST")
+      h3
+        label(for="patient") Select Patient
+      p     
+        select(name="patient")
+          each pat in patients
+            option(value=pat.id)= pat.username
+      if message
+        h5 message
+      h3
+        label(for="visit-date") Choose Date of visit
+      p
+        input(type="date" name="visit-date" id="visit-date")
+      h3
+        label(for="recipe") Recipe
+      p
+        textarea(name="recipe" id="recipe")
+      p
+        button(type="submit" id="send") Submit

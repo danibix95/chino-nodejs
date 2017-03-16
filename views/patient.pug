@@ -1,0 +1,27 @@
+extends layout.pug
+
+block title
+  title= "Patient - Chino API test"
+
+block style
+  link(rel="stylesheet" href="/css/patient.css")
+
+block content
+  .home
+    a(href="/") Home
+    a(href="/logout") Logout
+    
+  .container
+    h1 Patient Area
+    p Here patient can see its recipes. 
+
+    if recipes.length == 0
+      h3 There aren't any recipes
+    else
+      table
+        each rec in recipes
+          tr
+            td= rec.physician
+            td= rec.document_id
+            td= rec.visit_date
+            td= rec.observation

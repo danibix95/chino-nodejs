@@ -1,0 +1,27 @@
+extends layout.pug
+
+block title
+  title= "Login - Chino API test"
+
+block style
+  link(rel="stylesheet" href="/css/login.css")
+
+block content
+  .container
+    h1 Login to Chino API Test
+      
+    form(action="/login" method="post" id="login-form" autofocus)
+      p
+        label(for="username")
+          h4 Username:
+        input(type="text" name="username" id="username" placeholder="username")
+      p
+        label(for="password")
+          h4 Password:
+        input(type="password" name="password" id="password" placeholder="password")
+      p
+        button(type="submit" id="send") Login
+
+      .links
+        a(href="/physician") Physicians
+        a(href="/patient") Patiens

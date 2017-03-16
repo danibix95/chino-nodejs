@@ -1,0 +1,25 @@
+{
+  "name": "chino_example",
+  "version": "1.0.0",
+  "description": "This is an example of using Chino Node JS SDK.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Chino",
+    "example"
+  ],
+  "author": "Daniele Bissoli",
+  "license": "MIT",
+  "dependencies": {
+    "chino-sdk" : "^1.0.0",
+    "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-minify": "^0.2.0",
+    "path": "^0.12.7"
+  }
+}
