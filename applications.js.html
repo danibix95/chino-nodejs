@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>applications.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseObject.html">BaseObject</a></li><li><a href="Call.html">Call</a><ul class='methods'><li data-type='method'><a href="Call.html#chunk">chunk</a></li><li data-type='method'><a href="Call.html#del">del</a></li><li data-type='method'><a href="Call.html#get">get</a></li><li data-type='method'><a href="Call.html#getBlob">getBlob</a></li><li data-type='method'><a href="Call.html#patch">patch</a></li><li data-type='method'><a href="Call.html#post">post</a></li><li data-type='method'><a href="Call.html#put">put</a></li></ul></li><li><a href="Chino.html">Chino</a><ul class='methods'><li data-type='method'><a href="Chino.html#setAuth">setAuth</a></li></ul></li><li><a href="ChinoAPIApplication.html">ChinoAPIApplication</a><ul class='methods'><li data-type='method'><a href="ChinoAPIApplication.html#create">create</a></li><li data-type='method'><a href="ChinoAPIApplication.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIApplication.html#details">details</a></li><li data-type='method'><a href="ChinoAPIApplication.html#list">list</a></li><li data-type='method'><a href="ChinoAPIApplication.html#update">update</a></li></ul></li><li><a href="ChinoAPIAuth.html">ChinoAPIAuth</a><ul class='methods'><li data-type='method'><a href="ChinoAPIAuth.html#login">login</a></li><li data-type='method'><a href="ChinoAPIAuth.html#loginWithCode">loginWithCode</a></li><li data-type='method'><a href="ChinoAPIAuth.html#logout">logout</a></li><li data-type='method'><a href="ChinoAPIAuth.html#refreshToken">refreshToken</a></li></ul></li><li><a href="ChinoAPIBase.html">ChinoAPIBase</a></li><li><a href="ChinoAPIBlobs.html">ChinoAPIBlobs</a><ul class='methods'><li data-type='method'><a href="ChinoAPIBlobs.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIBlobs.html#download">download</a></li><li data-type='method'><a href="ChinoAPIBlobs.html#upload">upload</a></li></ul></li><li><a href="ChinoAPICollections.html">ChinoAPICollections</a><ul class='methods'><li data-type='method'><a href="ChinoAPICollections.html#create">create</a></li><li data-type='method'><a href="ChinoAPICollections.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPICollections.html#details">details</a></li><li data-type='method'><a href="ChinoAPICollections.html#insertDocument">insertDocument</a></li><li data-type='method'><a href="ChinoAPICollections.html#list">list</a></li><li data-type='method'><a href="ChinoAPICollections.html#listDocuments">listDocuments</a></li><li data-type='method'><a href="ChinoAPICollections.html#removeDocument">removeDocument</a></li><li data-type='method'><a href="ChinoAPICollections.html#search">search</a></li><li data-type='method'><a href="ChinoAPICollections.html#update">update</a></li></ul></li><li><a href="ChinoAPIDocuments.html">ChinoAPIDocuments</a><ul class='methods'><li data-type='method'><a href="ChinoAPIDocuments.html#create">create</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#details">details</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#list">list</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#update">update</a></li></ul></li><li><a href="ChinoAPIGroups.html">ChinoAPIGroups</a><ul class='methods'><li data-type='method'><a href="ChinoAPIGroups.html#create">create</a></li><li data-type='method'><a href="ChinoAPIGroups.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIGroups.html#details">details</a></li><li data-type='method'><a href="ChinoAPIGroups.html#insertUser">insertUser</a></li><li data-type='method'><a href="ChinoAPIGroups.html#list">list</a></li><li data-type='method'><a href="ChinoAPIGroups.html#removeUser">removeUser</a></li><li data-type='method'><a href="ChinoAPIGroups.html#update">update</a></li></ul></li><li><a href="ChinoAPIPerms.html">ChinoAPIPerms</a><ul class='methods'><li data-type='method'><a href="ChinoAPIPerms.html#getDocumentPermissions">getDocumentPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getGroupPermissions">getGroupPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getPermissions">getPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getUserPermissions">getUserPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onChildren">onChildren</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onResource">onResource</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onResources">onResources</a></li></ul></li><li><a href="ChinoAPIRepositories.html">ChinoAPIRepositories</a><ul class='methods'><li data-type='method'><a href="ChinoAPIRepositories.html#create">create</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#details">details</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#list">list</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#update">update</a></li></ul></li><li><a href="ChinoAPISchemas.html">ChinoAPISchemas</a><ul class='methods'><li data-type='method'><a href="ChinoAPISchemas.html#create">create</a></li><li data-type='method'><a href="ChinoAPISchemas.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPISchemas.html#details">details</a></li><li data-type='method'><a href="ChinoAPISchemas.html#list">list</a></li><li data-type='method'><a href="ChinoAPISchemas.html#update">update</a></li></ul></li><li><a href="ChinoAPISearch.html">ChinoAPISearch</a><ul class='methods'><li data-type='method'><a href="ChinoAPISearch.html#documents">documents</a></li><li data-type='method'><a href="ChinoAPISearch.html#users">users</a></li></ul></li><li><a href="ChinoAPIUsers.html">ChinoAPIUsers</a><ul class='methods'><li data-type='method'><a href="ChinoAPIUsers.html#create">create</a></li><li data-type='method'><a href="ChinoAPIUsers.html#current">current</a></li><li data-type='method'><a href="ChinoAPIUsers.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIUsers.html#details">details</a></li><li data-type='method'><a href="ChinoAPIUsers.html#list">list</a></li><li data-type='method'><a href="ChinoAPIUsers.html#partialUpdate">partialUpdate</a></li><li data-type='method'><a href="ChinoAPIUsers.html#update">update</a></li></ul></li><li><a href="ChinoAPIUserSchemas.html">ChinoAPIUserSchemas</a><ul class='methods'><li data-type='method'><a href="ChinoAPIUserSchemas.html#create">create</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#details">details</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#list">list</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#update">update</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#commit">commit</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#GRANT_TYPE">GRANT_TYPE</a></li><li><a href="global.html#listPermissions">listPermissions</a></li><li><a href="global.html#responseHandler">responseHandler</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">applications.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+const objects = require("./objects");
+const ChinoAPIBase = require("./chinoBase");
+
+class ChinoAPIApplication extends ChinoAPIBase {
+  /** Create a caller for Applications Chino APIs
+   *
+   * @param baseUrl     {string}  The url endpoint for APIs
+   * @param customerId  {string}  The Chino customer id or bearer token
+   * @param customerKey {string | null}  The Chino customer key or null (not provided)
+   */
+  constructor(baseUrl, customerId, customerKey = null) {
+    super(baseUrl, customerId, customerKey);
+  }
+
+  /** Return the list of existing applications
+   *
+   * @param offset {int}
+   * @param limit  {int}
+   * @return {Promise.&lt;Array, objects.ChinoError>}
+   *         A promise that return a list of Application object if resolved,
+   *         otherwise throw an ChinoError object if rejected
+   *         or was not retrieved a success status
+   *
+   */
+  list(offset = 0, limit = 10) {
+    const params = {
+      offset : offset,
+      limit : limit
+    };
+
+    return this.call.get(`/auth/applications`, params)
+        .then((result) => {
+          if (result.result_code === 200) {
+            return objects.getList(result.data.applications, "Application");
+          }
+          else {
+            throw new objects.ChinoError(result);
+          }
+        })
+        .catch((error) => { throw new objects.ChinoError(error); });
+  }
+
+  /** Create a new application
+   *
+   * @param data          {object}
+   * @return {Promise.&lt;objects.Application, objects.ChinoError>}
+   *         A promise that return a Application object if resolved,
+   *         otherwise throw an ChinoError object if rejected
+   *         or was not retrieved a success status
+   */
+  create(data) {
+    return this.call.post(`/auth/applications`, data)
+        .then((result) => {
+          if (result.result_code === 200) {
+            return new objects.Application(result);
+          }
+          else {
+            throw new objects.ChinoError(result);
+          }
+        })
+        .catch((error) => { throw new objects.ChinoError(error); });
+  }
+
+  /** Return information about application selected by its id
+   *
+   * @param applicationId  {string}
+   * @return {Promise.&lt;objects.Application, objects.ChinoError>}
+   *         A promise that return a Application object if resolved,
+   *         otherwise throw an ChinoError object if rejected
+   *         or was not retrieved a success status
+   */
+  details(applicationId) {
+    return this.call.get(`/auth/applications/${applicationId}`)
+        .then((result) => {
+          if (result.result_code === 200) {
+            return new objects.Application(result);
+          }
+          else {
+            throw new objects.ChinoError(result);
+          }
+        })
+        .catch((error) => { throw new objects.ChinoError(error); });
+  }
+
+  /** Update information about application selected by its id
+   *  with data as new application information
+   *
+   * @param applicationId  {string}
+   * @param data           {object}
+   * @return {Promise.&lt;objects.Application, objects.ChinoError>}
+   *         A promise that return a Application object if resolved,
+   *         otherwise throw an ChinoError object if rejected
+   *         or was not retrieved a success status
+   */
+  update(applicationId, data) {
+    return this.call.put(`/auth/applications/${applicationId}`, data)
+        .then((result) => {
+          if (result.result_code === 200) {
+            return new objects.Application(result);
+          }
+          else {
+            throw new objects.ChinoError(result);
+          }
+        })
+        .catch((error) => { throw new objects.ChinoError(error); });
+  }
+
+  /** Delete application selected by its id
+   *
+   * @param applicationId {string}
+   * @return {Promise.&lt;objects.Success, objects.ChinoError>}
+   *         A promise that return a Success object if resolved,
+   *         otherwise throw an ChinoError object if rejected
+   *         or was not retrieved a success status
+   */
+  delete(applicationId) {
+    return this.call.del(`/auth/applications/${applicationId}`)
+        .then((result) => {
+          if (result.result_code === 200) {
+            return new objects.Success(result);
+          }
+          else {
+            throw new objects.ChinoError(result);
+          }
+        })
+        .catch((error) => { throw new objects.ChinoError(error); });
+  }
+}
+
+module.exports = ChinoAPIApplication;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 16 2017 14:04:36 GMT+0000 (UTC) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
