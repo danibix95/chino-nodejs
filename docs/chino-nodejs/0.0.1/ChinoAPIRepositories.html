@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ChinoAPIRepositories - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseObject.html">BaseObject</a></li><li><a href="Call.html">Call</a><ul class='methods'><li data-type='method'><a href="Call.html#chunk">chunk</a></li><li data-type='method'><a href="Call.html#del">del</a></li><li data-type='method'><a href="Call.html#get">get</a></li><li data-type='method'><a href="Call.html#getBlob">getBlob</a></li><li data-type='method'><a href="Call.html#patch">patch</a></li><li data-type='method'><a href="Call.html#post">post</a></li><li data-type='method'><a href="Call.html#put">put</a></li></ul></li><li><a href="Chino.html">Chino</a><ul class='methods'><li data-type='method'><a href="Chino.html#setAuth">setAuth</a></li></ul></li><li><a href="ChinoAPIApplication.html">ChinoAPIApplication</a><ul class='methods'><li data-type='method'><a href="ChinoAPIApplication.html#create">create</a></li><li data-type='method'><a href="ChinoAPIApplication.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIApplication.html#details">details</a></li><li data-type='method'><a href="ChinoAPIApplication.html#list">list</a></li><li data-type='method'><a href="ChinoAPIApplication.html#update">update</a></li></ul></li><li><a href="ChinoAPIAuth.html">ChinoAPIAuth</a><ul class='methods'><li data-type='method'><a href="ChinoAPIAuth.html#login">login</a></li><li data-type='method'><a href="ChinoAPIAuth.html#loginWithCode">loginWithCode</a></li><li data-type='method'><a href="ChinoAPIAuth.html#logout">logout</a></li><li data-type='method'><a href="ChinoAPIAuth.html#refreshToken">refreshToken</a></li></ul></li><li><a href="ChinoAPIBase.html">ChinoAPIBase</a></li><li><a href="ChinoAPIBlobs.html">ChinoAPIBlobs</a><ul class='methods'><li data-type='method'><a href="ChinoAPIBlobs.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIBlobs.html#download">download</a></li><li data-type='method'><a href="ChinoAPIBlobs.html#upload">upload</a></li></ul></li><li><a href="ChinoAPICollections.html">ChinoAPICollections</a><ul class='methods'><li data-type='method'><a href="ChinoAPICollections.html#create">create</a></li><li data-type='method'><a href="ChinoAPICollections.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPICollections.html#details">details</a></li><li data-type='method'><a href="ChinoAPICollections.html#insertDocument">insertDocument</a></li><li data-type='method'><a href="ChinoAPICollections.html#list">list</a></li><li data-type='method'><a href="ChinoAPICollections.html#listDocuments">listDocuments</a></li><li data-type='method'><a href="ChinoAPICollections.html#removeDocument">removeDocument</a></li><li data-type='method'><a href="ChinoAPICollections.html#search">search</a></li><li data-type='method'><a href="ChinoAPICollections.html#update">update</a></li></ul></li><li><a href="ChinoAPIDocuments.html">ChinoAPIDocuments</a><ul class='methods'><li data-type='method'><a href="ChinoAPIDocuments.html#create">create</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#details">details</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#list">list</a></li><li data-type='method'><a href="ChinoAPIDocuments.html#update">update</a></li></ul></li><li><a href="ChinoAPIGroups.html">ChinoAPIGroups</a><ul class='methods'><li data-type='method'><a href="ChinoAPIGroups.html#create">create</a></li><li data-type='method'><a href="ChinoAPIGroups.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIGroups.html#details">details</a></li><li data-type='method'><a href="ChinoAPIGroups.html#insertUser">insertUser</a></li><li data-type='method'><a href="ChinoAPIGroups.html#list">list</a></li><li data-type='method'><a href="ChinoAPIGroups.html#removeUser">removeUser</a></li><li data-type='method'><a href="ChinoAPIGroups.html#update">update</a></li></ul></li><li><a href="ChinoAPIPerms.html">ChinoAPIPerms</a><ul class='methods'><li data-type='method'><a href="ChinoAPIPerms.html#getDocumentPermissions">getDocumentPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getGroupPermissions">getGroupPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getPermissions">getPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#getUserPermissions">getUserPermissions</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onChildren">onChildren</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onResource">onResource</a></li><li data-type='method'><a href="ChinoAPIPerms.html#onResources">onResources</a></li></ul></li><li><a href="ChinoAPIRepositories.html">ChinoAPIRepositories</a><ul class='methods'><li data-type='method'><a href="ChinoAPIRepositories.html#create">create</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#details">details</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#list">list</a></li><li data-type='method'><a href="ChinoAPIRepositories.html#update">update</a></li></ul></li><li><a href="ChinoAPISchemas.html">ChinoAPISchemas</a><ul class='methods'><li data-type='method'><a href="ChinoAPISchemas.html#create">create</a></li><li data-type='method'><a href="ChinoAPISchemas.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPISchemas.html#details">details</a></li><li data-type='method'><a href="ChinoAPISchemas.html#list">list</a></li><li data-type='method'><a href="ChinoAPISchemas.html#update">update</a></li></ul></li><li><a href="ChinoAPISearch.html">ChinoAPISearch</a><ul class='methods'><li data-type='method'><a href="ChinoAPISearch.html#documents">documents</a></li><li data-type='method'><a href="ChinoAPISearch.html#users">users</a></li></ul></li><li><a href="ChinoAPIUsers.html">ChinoAPIUsers</a><ul class='methods'><li data-type='method'><a href="ChinoAPIUsers.html#create">create</a></li><li data-type='method'><a href="ChinoAPIUsers.html#current">current</a></li><li data-type='method'><a href="ChinoAPIUsers.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIUsers.html#details">details</a></li><li data-type='method'><a href="ChinoAPIUsers.html#list">list</a></li><li data-type='method'><a href="ChinoAPIUsers.html#partialUpdate">partialUpdate</a></li><li data-type='method'><a href="ChinoAPIUsers.html#update">update</a></li></ul></li><li><a href="ChinoAPIUserSchemas.html">ChinoAPIUserSchemas</a><ul class='methods'><li data-type='method'><a href="ChinoAPIUserSchemas.html#create">create</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#delete">delete</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#details">details</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#list">list</a></li><li data-type='method'><a href="ChinoAPIUserSchemas.html#update">update</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#commit">commit</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#GRANT_TYPE">GRANT_TYPE</a></li><li><a href="global.html#listPermissions">listPermissions</a></li><li><a href="global.html#responseHandler">responseHandler</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">ChinoAPIRepositories</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        ChinoAPIRepositories
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="ChinoAPIRepositories"><span class="type-signature"></span>new ChinoAPIRepositories<span class="signature">(baseUrl, customerId, customerKey)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create a caller for Repositories Chino APIs</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The url endpoint for APIs</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>customerId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The Chino customer id or bearer token</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>customerKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>The Chino customer key or null (not provided)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Repository, objects.ChinoError>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create a new repository</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that return a Repository object if resolved,
+        otherwise throw an ChinoError object if rejected
+        or was not retrieved a success status</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;objects.Repository, objects.ChinoError></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(repositoryId, force)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Deactivate (or delete) repository selected by its id</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>repositoryId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>force</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>If true delete repository information
+                              otherwise only deactivate it.
+                              Default value is false (deactivate)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line121">line 121</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that return a Success object if resolved,
+        otherwise throw an ChinoError object if rejected
+        or was not retrieved a success status</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;objects.Success, objects.ChinoError></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="details"><span class="type-signature"></span>details<span class="signature">(repositoryId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Repository, objects.ChinoError>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Return information about repository selected by its id</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>repositoryId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line74">line 74</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that return a Repository object if resolved,
+        otherwise throw an ChinoError object if rejected
+        or was not retrieved a success status</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;objects.Repository, objects.ChinoError></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="list"><span class="type-signature"></span>list<span class="signature">(offset, limit)</span><span class="type-signature"> &rarr; {Promise.&lt;Array, objects.ChinoError>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Return the list of existing repositories</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    10
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that return a list of Repository object if resolved,
+        otherwise throw an ChinoError object if rejected
+        or was not retrieved a success status</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array, objects.ChinoError></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(repositoryId, data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Repository, objects.ChinoError>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Update information about repository selected by its id
+ with data as new repository information</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>repositoryId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="repositories.js.html">repositories.js</a>, <a href="repositories.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A promise that return a Repository object if resolved,
+        otherwise throw an ChinoError object if rejected
+        or was not retrieved a success status</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;objects.Repository, objects.ChinoError></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 23:16:26 GMT+0100 (CET) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
