@@ -368,7 +368,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line164">line 164</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line173">line 173</a>
     </li></ul></dd>
     
 
@@ -396,7 +396,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Perms object if resolved,
-        otherwise throw a ChinoError object if rejected
+        otherwise throw a ChinoError if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -523,7 +523,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line206">line 206</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line215">line 215</a>
     </li></ul></dd>
     
 
@@ -551,7 +551,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Perms object if resolved,
-        otherwise throw a ChinoError object if rejected
+        otherwise throw a ChinoError if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -629,7 +629,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line142">line 142</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line151">line 151</a>
     </li></ul></dd>
     
 
@@ -784,7 +784,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line185">line 185</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -812,7 +812,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Perms object if resolved,
-        otherwise throw a ChinoError object if rejected
+        otherwise throw a ChinoError if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -839,7 +839,7 @@
 
     
 
-    <h4 class="name" id="onChildren"><span class="type-signature"></span>onChildren<span class="signature">(action, resourceType, resourcesId, childrenType, subjectType, subjectId, manage, authorize)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="onChildren"><span class="type-signature"></span>onChildren<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
 
     
 
@@ -882,13 +882,13 @@
 
         <tr>
             
-                <td class="name"><code>action</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -898,168 +898,15 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resourceType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resourcesId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>childrenType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>manage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>authorize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last"><p>A JS object that contains parameters for working on permissions. Parameters are:</p>
+<pre class="prettyprint source"><code>- action        {string} The permission action to execute                      {grant | revoke}
+- resourceType  {string} The resource on which execute the action
+- resourceId    {string} The id of the resource on which target can manage
+- childrenType  {string} The resource children of resource type on target can manage
+- subjectType   {string} The target type of permission action                  {users | user_schemas | groups}
+- subjectId     {string} The id of the target type
+- manage        {Array}  The list of permissions that target receive on the resources
+- authorize     {Array}  The list of permissions that target can give to others subjectType</code></pre></td>
         </tr>
 
     
@@ -1100,7 +947,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line116">line 116</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -1128,7 +975,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-         otherwise throw a ChinoError object if rejected
+         otherwise throw a ChinoError if rejected
          or was not retrieved a success status</p>
 </div>
 
@@ -1155,7 +1002,7 @@
 
     
 
-    <h4 class="name" id="onResource"><span class="type-signature"></span>onResource<span class="signature">(action, resourceType, resourcesId, subjectType, subjectId, manage, authorize)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="onResource"><span class="type-signature"></span>onResource<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
 
     
 
@@ -1198,13 +1045,13 @@
 
         <tr>
             
-                <td class="name"><code>action</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -1214,145 +1061,14 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resourceType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resourcesId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>manage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>authorize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last"><p>A JS object that contains parameters for working on permissions. Parameters are:</p>
+<pre class="prettyprint source"><code>- action        {string} The permission action to execute         {grant | revoke}
+- resourceType  {string} The resource on which execute the action
+- resourceId    {string} The id of the resource on which target can manage
+- subjectType   {string} The target type of permission action     {users | user_schemas | groups}
+- subjectId     {string} The id of the target type
+- manage        {Array}  The list of permissions that target receive on the resources
+- authorize     {Array}  The list of permissions that target can give to others subjectType</code></pre></td>
         </tr>
 
     
@@ -1393,7 +1109,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line82">line 82</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -1421,7 +1137,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-         otherwise throw a ChinoError object if rejected
+         otherwise throw a ChinoError if rejected
          or was not retrieved a success status</p>
 </div>
 
@@ -1448,7 +1164,7 @@
 
     
 
-    <h4 class="name" id="onResources"><span class="type-signature"></span>onResources<span class="signature">(action, resourcesType, subjectType, subjectId, manage, authorize)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="onResources"><span class="type-signature"></span>onResources<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
 
     
 
@@ -1491,13 +1207,13 @@
 
         <tr>
             
-                <td class="name"><code>action</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
             
@@ -1507,122 +1223,13 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resourcesType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>subjectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>manage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>authorize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last"><p>A JS object that contains parameters for working on permissions. Parameters are:</p>
+<pre class="prettyprint source"><code>- action        {string} The permission action to execute                    {grant | revoke}
+- resourcesType {string} The top level resource on which execute the action  {repositories | user_schemas | groups}
+- subjectType   {string} The target type of permission action                {users | user_schemas | groups}
+- subjectId     {string} The id of the target type
+- manage        {Array}  The list of permissions that target receive on the resources
+- authorize     {Array}  The list of permissions that target can give to others subjectType</code></pre></td>
         </tr>
 
     
@@ -1663,7 +1270,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line49">line 49</a>
+        <a href="perms.js.html">perms.js</a>, <a href="perms.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
@@ -1691,7 +1298,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-         otherwise throw a ChinoError object if rejected
+         otherwise throw a ChinoError if rejected
          or was not retrieved a success status</p>
 </div>
 
@@ -1731,7 +1338,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 16 2017 14:04:36 GMT+0000 (UTC) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Mar 18 2017 19:48:57 GMT+0000 (UTC) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
