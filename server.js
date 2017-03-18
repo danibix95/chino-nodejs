@@ -26,30 +26,225 @@ chino.applications.create(appData)
 chino.setAuth(appId, appSecret);
 
 // set constant ID
-const repositoryID = process.env.REP_ID;
-const physicianID = process.env.PHY_ID;
-const patientID = process.env.PAT_ID;
-const recipeID = process.env.REC_ID;
+let patientsID, physiciansID, repositoryID, recipesID;
+let pat1id, pat2id, collPat1, collPat2;
 
-module.exports.physician = 
+/* ======== SET UP THE ENVIRONMENT FOR EXAMPLE======== */
+const recipesSchema = {
+  description: "Recipe",
+  structure: {
+    fields: [
+      {
+        indexed: true,
+        name: "visit_date",
+        type: "date"
+      },
+      {
+        indexed: true,
+        name: "physician_id",
+        type: "string"
+      },
+      {
+        indexed: true,
+        name: "patient_id",
+        type: "string"
+      },
+      {
+        name: "observation",
+        type: "text"
+      }
+    ]
+  }
+};
+
+const patientSchema = {
+  description: "Patient",
+  structure: {
+    fields: [
+      {
+        indexed: true,
+        name: "CF",
+        type: "string"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "surname",
+        type: "string"
+      },
+      {
+        name: "address",
+        type: "string"
+      },
+      {
+        indexed: true,
+        name: "email",
+        type: "string"
+      },
+      {
+        name: "phone",
+        type: "string"
+      },
+      {
+        name: "physicians",
+        type: "json"
+      },
+      {
+        name: "recipeCollection",
+        type: "string"
+      }
+    ]
+  }
+};
+const pat1 = {
+  attributes: {
+    CF: "MRARSS70A01L781H",
+    address: "Piazza Fiera, 13, Trento, TN",
+    email: "mario.rossi@example.org",
+    name: "Mario",
+    phone: "0461885506",
+    physicians: [],
+    surname: "Rossi",
+    recipeCollection: ""
+  },
+  is_active: true,
+  username: "MRARSS70A01L781H",
+  password: "12345678--"
+};
+const pat2 = {
+  attributes: {
+    CF: "SRTLBT90E43L378C",
+    address: "Via Francesco Barbacovi 22, Trento, TN",
+    email: "eli.sr@example.org",
+    name: "Elisabetta",
+    phone: "0461885506",
+    physicians: [],
+    surname: "Sartori",
+    recipeCollection: ""
+  },
+  is_active: true,
+  username: "SRTLBT90E43L378C",
+  password: "12345678--"
+};
+
+const physicianSchema = {
+  description: "Physician",
+  structure: {
+    fields: [
+      {
+        indexed: true,
+        name: "CF",
+        type: "string"
+      },
+      {
+        name: "name",
+        type: "string"
+      },
+      {
+        name: "surname",
+        type: "string"
+      },
+      {
+        name: "degree",
+        type: "string"
+      },
+      {
+        name: "patients",
+        type: "json"
+      },
+      {
+        name: "written_recipes",
+        type: "json"
+      }
+    ]
+  }
+};
+const phy = {
+  attributes: {
+    CF: "BNDPRZ70M60L7861K",
+    degree: "Laurea in Medicina e Chirurgia",
+    name: "Patrizia",
+    patients: [],
+    surname: "Bonadonna",
+    written_recipes: []
+  },
+  is_active: true,
+  username: "BNDPRZ70M60L7861K",
+  password: "12345678--"
+};
+
+const repoDesc = {
+  description : "Repository for application example"
+}
+
+chino.repositories.create(repoDesc)
+    .then(repo => {
+      repositoryID = repo.repository_id;
+
+      return chino.schemas.create(repositoryID, recipesSchema)
+    })
+    .then(result => Promise.all([
+        chino.collections.create({name : "recipePat1"}),
+        chino.collections.create({name : "recipePat2"})
+    ]))
+    .then(result => {
+        collPat1 = result[0].collection_id;
+        collPat2 = result[1].collection_id;
+
+        pat1.recipeCollection = result[0].collection_id;
+        pat2.recipeCollection = result[1].collection_id;
+
+        return chino.userSchemas.create(patientSchema)
+    })
+    .then(us => {
+        patientsID = us.schema_id;
+
+        return Promise.all(insertPatient(pat1), insertPatient(pat2))
+    })
+    .then(result => {
+        pat1id = result[0].user_id;
+        pat2id = result[1].user_id;
+
+        phy.attributes.patients.push(pat1id);
+        phy.attributes.patients.push(pat2id);
+
+        return chino.userSchemas.create(physicianSchema)
+    })
+    .then(us => {
+      physiciansID = us.schema_id;
+
+      return chino.users.create(physiciansID, phy)
+    })
+    .then(res => Promise.all([
+      chino.users.partialUpdate(pat1id, {attributes : { physicians : [res.user_id] }}),
+      chino.users.partialUpdate(pat2id, {attributes : { physicians : [res.user_id] }}),
+    ]))
+    .catch(err => { console.error(err) });
+
+let insertPatient = (data) => chino.users.create(patientsID, data);
+/* ======================================== */
+
+/* ======================================== */
+
+module.exports.physician =
   function (request, response) {
     let data = { patients : [], message : ""}
 
-    const auth = basicAuth(process.env.CHINO_ID, process.env.CHINO_KEY);
-    
-    User.info(request.cookies["bearer"])
+    const chinoUser = new Chino(baseUrl, request.cookies["bearer"]);
+
+    chinoUser.users.current()
       .then((success) => {
-        let patients = success.data.user.attributes.patients;
+        const patients = success.attributes.patients;
 
         // wait for every call
-        Promise.all(patients.map((patId) =>
-          Call.JSON(`/users/${patId}`, "GET", {}, auth))
-        )
+        Promise.all(patients.map((patId) => chino.users.details(patId)))
         .then((values) => {
           values.forEach((pat) => {
             data.patients.push({
-              "id" : pat.data.user.user_id,
-              "username" : pat.data.user.username
+              "id" : pat.user_id,
+              "username" : pat.username
             });
           });
           response.render("physician", data);
@@ -67,76 +262,82 @@ module.exports.physician =
       });
   };
 
-module.exports.patient = 
+module.exports.patient =
   function (request, response) {
     let data = { recipes : [] };
 
-    const auth = basicAuth(process.env.CHINO_ID, process.env.CHINO_KEY);
+    const chinoUser = new Chino(baseUrl, request.cookies["bearer"]);
 
-    User.info(request.cookies["bearer"])
+    chinoUser.users.current()
       .then((result) => {
-        let recipesCollection = result.data.user.attributes.recipes;
-        // console.log(recipesCollection);
-        
+        let recipesCollection = result.attributes.recipeCollection;
+
+        let documents = []
+        let still = true;
+        let offset = 0;
+
+        // retrieve documents using pagination
+        while (still) {
+          chino.collections.listDocuments(recipesCollection, offset)
+              .then(doc => {
+                documents = documents.concat(doc);
+                offset += doc.count;
+                // check if is needed to retrieve more docs
+                still = (doc.count !== 0 && offset < doc.total_count);
+              })
+              .catch(err => {
+                console.error(err);
+              })
+        }
+
         // get all recipe of the patient
-        Call.JSON(`/collections/${recipesCollection}/documents`, "GET", {}, auth)
+        Promise.all(documents)
           .then((result) => {
-            // console.log(result);
-            if (result.result_code === HttpStatus.OK) {
-              
               // get documents id of patient recipes
-              let documentsId = result.data.documents.map((doc) => doc.document_id);
-              // console.log(documentsId);
+              let documentsId = result.documents.map((doc) => doc.document_id);
 
               // get all documents
-              Promise.all(documentsId.map((docId) =>
-                Call.JSON(`/documents/${docId}`, "GET", {}, `Bearer ${request.cookies["bearer"]}`))
-              )
+              Promise.all(documentsId.map((docId) => chinoUser.documents.details(docId)))
               .then((values) => {
                 values.forEach((doc) => {
-                  if (doc.result_code === HttpStatus.OK) {
-                    data.recipes.push({
-                      "physician" : doc.data.document.content.physician_id,
-                      "visit_date" : doc.data.document.content.visit_date,
-                      "document_id" : doc.data.document.document_id,
-                      "observation" : doc.data.document.content.observation,
-                    });
-                  }
-                  else {
-                    console.log(doc);
-                  }
-                });
+                  doc.recipes.push({
+                    "physician" : doc.content.physician_id,
+                    "visit_date" : doc.content.visit_date,
+                    "document_id" : doc.document_id,
+                    "observation" : doc.content.observation,
+                  });
+                })
+
                 response.render("patient", data);
               })
               .catch((error) => {
-                console.log(`Error: ${error}`);
+                console.error(error);
                 response.render("patient", data);
               })
-            }
           })
           .catch((error) => {
-            console.log(`Error: ${error}`);
+            console.error(error);
             response.render("patient", data);
           });
       })
       .catch((error) => {
-        console.log(`Error: ${error}`);
+        console.error(error);
         response.render("patient", data);
       })
   };
 
 module.exports.addRecipe =
   function (request, response) {
-    const auth = basicAuth(process.env.CHINO_ID, process.env.CHINO_KEY);
-
     if (request.body["recipe"] && request.body["recipe"] !== "") {
-      User.info(request.cookies["bearer"])
-        .then((success) => {
-          let physician = success.data.user.user_id;
+      const chinoUser = new Chino(baseUrl, request.cookies["bearer"]);
 
-          let written_recipes = success.data.user.attributes.written_recipes;
+      chinoUser.users.current()
+        .then((user) => {
+          let physician = user.user_id;
 
-          let recipe = {
+          let written_recipes = user.attributes.written_recipes;
+
+          const recipe = {
             content : {
               "physician_id": physician,
               "visit_date": request.body["visit-date"],
@@ -146,79 +347,55 @@ module.exports.addRecipe =
           }
 
           // get patient recipes collection and insert recipe also into it
-          Call.JSON(`/users/${request.body["patient"]}`, "GET", {}, auth)
-            .then((result) => {
-              if (result.result_code = HttpStatus.OK) {
-                let recipeCollection = result.data.user.attributes.recipes;
-                
-                // insert a new document (recipe)
-                Call.JSON(`/schemas/${recipeID}/documents`, "POST", recipe, `Bearer ${request.cookies["bearer"]}`)
-                  .then((result) => {
-                    if (result.result_code = HttpStatus.OK) {
-                      let docId = result.data.document.document_id;
+          chino.users.details(request.body["patient"])
+              .then((patient) => {
+                const recipeCollection = patient.attributes.recipeCollection;
 
+                // insert a new document (recipe)
+                chinoUser.documents.create(recipesID, recipe)
+                  .then((doc) => {
                       // insert document into patient recipe collections
-                      Call.JSON(`/collections/${recipeCollection}/documents/${docId}`, "POST", {}, `Bearer ${request.cookies["bearer"]}`)
-                        .then((result) => {
+                      chinoUser.collections.insertDocument(recipeCollection, doc.document_id)
+                        .then((doc) => {
                           // Check if current collection isn't managed by physician.
-                          // Add it if necesserary
+                          // Add it if necessary
                           if (!written_recipes.includes(recipeCollection)) {
                             written_recipes.push(recipeCollection);
-                            let update = {
+                            const update = {
                               attributes : {
                                 "written_recipes" : written_recipes
                               }
                             };
                             // update physician info
-                            Call.JSON(`/users/${physician}`, "PATCH", update, auth)
-                              .then((result) => {
-                                // log the action
-                              })
+                            chino.users.partialUpdate(physician, update)
                               .catch((error) => {
-                                console.log(`Error: ${error}`);
+                                console.error(error);
                                 response.redirect("/physician");
                               });
 
                           }
                           // give patient permission to read that document
-                          let perms = { manage : ["R"] }
-                          Call.JSON(`/perms/grant/documents/${docId}/users/${request.body["patient"]}`, "POST", perms, `Bearer ${request.cookies["bearer"]}`)
-                            .then((result) => {
-                              // log the action
-                              if (result.result_code !== HttpStatus.OK)
-                                console.log("It was not possible to assign permissions");
-                            })
-                            .catch((error) => {
-                              console.log(`Error: ${error}`);
-                              response.redirect("/physician");
-                            });
+                          const manage = ["R"];
+                          return chinoUser.perms.onResource("grant", "documents", docId, "users", request.body["patient"], manage)
                         })
-                        .catch((error) => {
-                          console.log(`Error: ${error}`);
-                          response.redirect("/physician");
-                        });
-                    }
-                    // let action run asyncronously and show the page to user
+                        .catch((error) => { console.error(error); });
+                    // let action run asynchronously and show the page to user
                     response.redirect("/physician");
                   })
                   .catch((error) => {
-                    console.log(`Error: ${error}`);
+                    console.error(error);
                     response.redirect("/physician");
                   });
-              }
-              else {
+              })
+              .catch((error) => {
+                console.error(error);
                 response.redirect("/physician");
-              }
-            })
-            .catch((error) => {
-              console.log(`Error: ${error}`);
-              response.redirect("/physician");
-            });
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
-          response.redirect("/physician");
-        });
+              });
+          })
+          .catch((error) => {
+            console.log(`Error: ${error}`);
+            response.redirect("/physician");
+          });
     }
     else {
       response.redirect("/");
@@ -236,71 +413,45 @@ module.exports.requireLogin =
     }
   };
 
-/* TODO: below could be some code duplication */
 module.exports.isPhysician =
   function (request, response, next) {
-    User.info(request.cookies["bearer"])
-      .then((result) => {
-        if (result.result_code === HttpStatus.OK) {
-          if (result.data.user.schema_id === physicianID) {
-            next();
-          }
-          // if it isn't a physician require to login
-          else {
-            response.redirect('/');
-          }
+    const chinoUser = new Chino(baseUrl, request.cookies["bearer"]);
+    chinoUser.users.current()
+      .then((user) => {
+        if (user.schema_id === physiciansID) {
+          next();
         }
-        // given a different code means
+        // if it isn't a physician require to login
         else {
           response.redirect('/');
         }
       })
-      .catch((error) => {
-        console.log(`Error: ${error}`);
-        response.redirect('/');
-      });
+      .catch((error) => { response.redirect('/'); });
   };
 
 module.exports.isPatient =
   function (request, response, next) {
-    User.info(request.cookies["bearer"])
-      .then((result) => {
-        if (result.result_code === HttpStatus.OK) {
-          if (result.data.user.schema_id === patientID) {
+    const chinoUser = new Chino(baseUrl, request.cookies["bearer"]);
+    chinoUser.users.current()
+        .then((user) => {
+          if (user.schema_id === patientsID) {
             next();
           }
           // if it isn't a physician require to login
           else {
             response.redirect('/');
           }
-        }
-        // given a different code means
-        else {
-          response.redirect('/');
-        }
-      })
-      .catch((error) => {
-        console.log(`Error: ${error}`);
-        response.redirect('/');
-      });
+        })
+        .catch((error) => { response.redirect('/'); });
   };
 /* ----------------------- */
 
 module.exports.login =
   function (request, response) {
     if (request.body["username"] && request.body["password"]) {
-      let settings = {
-        "grant_type" : "password",
-        "username" : request.body["username"],
-        "password" : request.body["password"]
-      }
-
-      const auth = basicAuth(process.env.APP_ID, process.env.APP_KEY);
-      
-      Call.formData("/auth/token", "POST", settings, auth)
+      chino.auth.login(request.body["username"], request.body["password"])
         .then((result) => {
-          if (result.result_code === HttpStatus.OK) {
-            let bearer = result.data.access_token;
+            let bearer = result.access_token;
 
             // set cookie to let user to access (expires after 10 minutes)
             response.cookie(
@@ -313,41 +464,54 @@ module.exports.login =
               }
             );
 
-            User.info(bearer)
+            const chinoUser = (new Chino(baseUrl, bearer)).users;
+
+            chinoUser.current()
               .then((userInfo) => {
-                
-                if (userInfo && userInfo.result_code === HttpStatus.OK) {
-                  if (userInfo.data.user.schema_id === physicianID) {
-                    response.redirect("/physician");
-                  }
-                  else if (userInfo.data.user.schema_id === patientID){
-                    response.redirect("/patient");
-                  }
-                }
-                else {
-                  // in case I was not already redirected, the go to login page
-                  response.redirect("/");
+                switch (userInfo.schema_id) {
+                  case physiciansID:
+                    response.redirect("/physician"); break;
+                  case patientsID:
+                    response.redirect("/patient"); break;
+                  default:
+                    // no user
+                    response.redirect("/");
                 }
               })
-              .catch((error) => {
-                console.log(`Promises rejected: ${error}`);
-              });
-          }
-          else {
-            // send user again to login page
-            // TODO: insert a message to tell user have inserted wrong credential
-            response.redirect("/");
-          }
+              .catch((error) => { console.error(error); });
         })
-        .catch((error) => {
-          console.log(`FormData call error: ${error}`);
-        });
+        .catch((error) => { console.error(`FormData call error: ${error}`); });
     }
   };
 
 // Delete auth token and send user back to login page  
 module.exports.logout =
   function(request, response) {
-    response.clearCookie("bearer");
-    response.redirect("/");
+    chino.auth.logout(request.cookies["bearer"])
+        .then(success => {
+          response.clearCookie("bearer");
+          response.redirect("/");
+        })
+        .catch(error => { console.error(error); });
   };
+
+/*  SET UP A CLEANER LISTENER ON NODE EXIT  */
+process.stdin.resume();
+
+function exitHandler() {
+  Promise.all([
+    chino.userSchemas.delete(patientsID),
+    chino.userSchemas.delete(physiciansID),
+    chino.schemas.delete(recipesID)
+  ])
+  .then(() => Promise.all([
+    chino.repositories.delete(repositoryID),
+    chino.collections.delete(collPat1),
+    chino.collections.delete(collPat2)
+  ]))
+  .then(() => {process.exit() })
+  .catch((err) => { throw err; });
+}
+process.on('exit', exitHandler);
+process.on('SIGINT', exitHandler);
+process.on('uncaughtException', exitHandler);

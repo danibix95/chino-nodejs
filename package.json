@@ -14,12 +14,16 @@
   "author": "Daniele Bissoli",
   "license": "MIT",
   "dependencies": {
-    "chino-sdk" : "^1.0.0",
     "body-parser": "^1.17.1",
+    "chino-sdk": "^1.0.0",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-minify": "^0.2.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "private-parts": "^0.4.1",
+    "pug": "^2.0.0-beta11",
+    "superagent": "^3.5.0",
+    "superagent-binary-parser": "^1.0.1"
   }
 }
