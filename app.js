@@ -50,5 +50,5 @@ app.use("/", express.static(path.join(__dirname, "public"), {dotfiles: "deny"}))
 
 /* APPLICATION STARTUP */
 app.listen(process.env.PORT || app.get("port"), function () {
-  console.log("Website listening on port " + app.get("port") + ".");
+  console.log("Starting the app on http://localhost:" + app.get("port") + "...");
 });
