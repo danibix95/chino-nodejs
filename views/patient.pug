@@ -19,6 +19,11 @@ block content
       h3 There aren't any recipes
     else
       table
+        thead#bold
+          td Physician Id
+          td Recipe Id
+          td Visit Date
+          td Observation
         each rec in recipes
           tr
             td= rec.physician

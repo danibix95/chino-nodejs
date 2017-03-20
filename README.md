@@ -5,23 +5,24 @@ Unofficial NodeJs wrapper for Chino.io APIs.
 
 You can see official website here: [https://chino.io][1]. For further information on SDK, please refer to SDK [documentation][2].
 
-## Test the SDK
-In order to test Chino Node Js SDK you have to install Node Js Javascript runtime. You can follow [instruction][3] provided on Node website.
+## SDK usage example
+In this branch you can find a simple example of how use Chino SDK. You can try it cloning this branch (*example*) of the repository:
 
-Once the enviroment is ready have to clone this repository with the following command:
-    
-    git clone https://github.com/danibix95/chino-nodejs.git
+    git clone -b example https://github.com/danibix95/chino-nodejs.git
 
-Then enter inside the repository folder:
+Then go into repository folder
    
     cd chino-nodejs
-And install project dependecies:Disclaimer: Any viewpoints and opinions expressed in this article are those of Nicholas C. Zakas and do not, 
+And install example dependencies
 
     npm install
-Now the project is ready to be tested. Run the following command to test it:
+Now the example is ready to be tested. Run the following command to test it:
 
-    npm test
+    node app.js
+or:
+
+    npm start
+and wait example app finish to start up before start to try it. 
 
 [1]: https://chino.io
 [2]: https://danibix95.github.io/chino-nodejs/
-[3]: https://nodejs.org/en/download/package-manager/

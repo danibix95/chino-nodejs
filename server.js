@@ -207,21 +207,6 @@ chino.applications.create(appData)
         phy.attributes.patients.push(pat2id);
 
         return chino.userSchemas.create(physicianSchema);
-        // // give permissions to read recipes
-        // let getPerms = (pid) => ({
-        //   action: "grant",
-        //   resourceType: "schemas",
-        //   resourceId: recipesID,
-        //   childrenType : "documents",
-        //   subjectType: "users",
-        //   subjectId : pid,
-        //   manage: ["R"]
-        // });
-        //
-        // return Promise.all([
-        //     chino.perms.onChildren(getPerms(pat1id)),
-        //     chino.perms.onChildren(getPerms(pat2id))
-        // ]);
     })
     .then(result => {
       physiciansID = result.user_schema_id;
@@ -229,34 +214,25 @@ chino.applications.create(appData)
       return chino.users.create(physiciansID, phy)
     })
     .then(res => {
-        const perms1 = {
-          action: "grant",
-          resourceType: "schemas",
-          resourceId: recipesID,
-          subjectType: "users",
-          subjectId : res.user_id,
-          manage: ["R","U","D"],
-          authorize : ["R"]
-        };
-        const perms2 = {
+        const perms = {
           action: "grant",
           resourceType: "schemas",
           resourceId: recipesID,
           childrenType : "documents",
           subjectType: "users",
           subjectId : res.user_id,
-          manage: ["C","R","U","D", "L"],
-          authorize : ["R", "L"],
-          "created_document":{
-            "manage":["R", "U", "D"],
-            "authorize":["R", "U", "D", "A"]
+          permissions : {
+            manage: ["C", "L"],
+            created_document : {
+              manage : ["R", "U", "D"],
+              authorize : ["R"]
+            }
           }
         };
         return Promise.all([
           chino.users.partialUpdate(pat1id, {attributes : { physicians : [res.user_id] }}),
           chino.users.partialUpdate(pat2id, {attributes : { physicians : [res.user_id] }}),
-          chino.perms.onResource(perms1),
-          chino.perms.onChildren(perms2)
+          chino.perms.onChildren(perms)
         ])
     })
     .then(() => {
@@ -327,31 +303,33 @@ module.exports.patient =
       .then((result) => {
         let recipesCollection = result.attributes.recipeCollection;
 
-        let documents = []
+        let documents = [];
         let offset = 0;
 
         // recursively retrieve documents
-        function list(offset) {
+        function getList(resolve, reject) {
           chino.collections.listDocuments(recipesCollection, offset)
               .then(docs => {
-                console.log(docs)
                 documents = documents.concat(docs.list);
                 offset += docs.count;
                 // check if is needed to retrieve more docs
-                if (docs.count !== 0 && offset < docs.total_count) list(offset);
+                if (docs.count !== 0 && offset < docs.total_count) {
+                  getList(resolve, reject);
+                }
+                else {
+                  resolve(documents);
+                }
               })
               .catch(err => {
                 console.error(`Time: ${Date()}\n${JSON.stringify(err)}`);
+                reject(err);
               });
         }
 
-        list(offset);
-
         // get all recipe of the patient
-        return Promise.all(documents);
+        return new Promise(getList);
       })
       .then((docs) => {
-          console.log(docs)
           // get documents id of patient recipes
           let documentsId = docs.map((doc) => doc.document_id);
 
@@ -360,7 +338,7 @@ module.exports.patient =
       })
       .then((values) => {
         values.forEach((doc) => {
-          doc.recipes.push({
+          data.recipes.push({
             "physician" : doc.content.physician_id,
             "visit_date" : doc.content.visit_date,
             "document_id" : doc.document_id,
@@ -422,13 +400,14 @@ module.exports.addRecipe =
                       resourceId: doc.document_id,
                       subjectType: "users",
                       subjectId: request.body["patient"],
-                      manage: ["R"]
+                      permissions: {
+                        manage: ["R"]
+                      }
                     }
                     return chino.perms.onResource(data);
                   })
           )
           .then(() => {
-            console.log("testing")
             // Check if current collection isn't managed by physician.
             // Add it if necessary
             if (!written_recipes.includes(recipeCollection)) {
@@ -514,7 +493,7 @@ module.exports.login =
               "bearer",
               bearer,
               {
-                expires  : new Date(Date.now() + result.expires_in*100),
+                expires  : new Date(Date.now() + result.expires_in*240),
                 httpOnly : true,
                 sameSite : true
               }
