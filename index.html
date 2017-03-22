@@ -47,15 +47,83 @@
 
 
     <section class="readme">
-        <article><h1>Chino.io NodeJs client</h1><p><a href="https://travis-ci.org/danibix95/chino-nodejs"><img src="https://travis-ci.org/danibix95/chino-nodejs.svg?branch=master" alt="Build Status"></a> <a href="https://codecov.io/gh/danibix95/chino-nodejs"><img src="https://codecov.io/gh/danibix95/chino-nodejs/branch/master/graph/badge.svg" alt="codecov"></a></p>
-<p>Unofficial NodeJs wrapper for Chino.io APIs.</p>
-<p>You can see official website here: <a href="https://chino.io">https://chino.io</a>. For further information on SDK, please refer to its <a href="https://nodejs.org/en/download/package-manager/">documentation</a>.</p>
-<h2>Test the SDK</h2><p>In order to test Chino Node Js SDK you have to install Node Js Javascript runtime. You can follow <a href="https://chino.io">instruction</a> provided on Node website.</p>
-<p>Once the enviroment is ready have to clone this repository with the following command:</p>
-<pre class="prettyprint source"><code>git clone https://github.com/danibix95/chino-nodejs.git</code></pre><p>Then enter inside the repository folder:</p>
-<pre class="prettyprint source"><code>cd chino-nodejs</code></pre><p>And install project dependecies:</p>
-<pre class="prettyprint source"><code>npm install</code></pre><p>Now the project is ready to be tested. Run the following command to test it:</p>
-<pre class="prettyprint source"><code>npm test</code></pre></article>
+        <article><h1>Chino.io Node JS client</h1><p><a href="https://travis-ci.org/danibix95/chino-nodejs"><img src="https://travis-ci.org/danibix95/chino-nodejs.svg?branch=master" alt="Build Status"></a> <a href="https://codecov.io/gh/danibix95/chino-nodejs"><img src="https://codecov.io/gh/danibix95/chino-nodejs/branch/master/graph/badge.svg" alt="codecov"></a></p>
+<p><em>Official</em> Node JS wrapper for <a href="https://chino.io">Chino.io</a> APIs.</p>
+<p>At the following links can be found:</p>
+<ul>
+<li><a href="https://docs.chino.io">Chino APIs documentation</a></li>
+<li><a href="https://danibix95.github.io/chino-nodejs/">SDK documentation</a></li>
+</ul>
+<h2>Requirements</h2><p>Before you can use Chino Node JS SDK you have to install Node JS Javascript runtime. If you haven't it yet, you can follow the <a href="https://nodejs.org/en/download/package-manager/">instructions</a> provided on Node JS website.</p>
+<h2>Installation</h2><p>Work in progress (SDK will be publish on NPM and then this section will be updated)</p>
+<h2>Test the SDK</h2><p>Once requirements are satisfied you can test the SDK. In order to complete this task you have to follow these steps:</p>
+<p>Clone this repository with the following command:</p>
+<pre class="prettyprint source"><code>git clone https://github.com/danibix95/chino-nodejs.git</code></pre><p>Then go inside the repository folder:</p>
+<pre class="prettyprint source"><code>cd chino-nodejs</code></pre><p>And install project dependencies:</p>
+<pre class="prettyprint source"><code>npm install</code></pre><p>After the install process, open <code>/test/testSettings.js</code> file and insert base url for calls (e.g. the one for testing if you have a free plan), your Chino customer id and customer key:</p>
+<pre class="prettyprint source"><code>Inside file /test/testSettings.js
+
+...
+module.exports.baseUrl = &quot;https://api.test.chino.io/v1&quot;;
+module.exports.customerId  = &quot;your-Chino-Customer-ID&quot;;
+module.exports.customerKey = &quot;your-Chino-Customer-KEY&quot;;
+...</code></pre><p>Now the project is ready to be tested. Run the following command to test it:</p>
+<pre class="prettyprint source"><code>npm test</code></pre><h2>SDK Usage</h2><h3>First steps</h3><p>After you have installed the SDK you can import it in your project and create the main object:</p>
+<pre class="prettyprint source"><code>const Chino = require(&quot;chino-sdk&quot;);     // before working, SDK have to publish
+                                        // on NPM and installed locally
+
+const chinoClient = new Chino(&quot;base-url&quot;, &quot;chino-id&quot;, &quot;chino-key&quot;);</code></pre><p>Parameters used for construct a Chino object are:</p>
+<ul>
+<li><code>base-url</code><br>  the url at which the client will makes requests<br>  e.g.    https://api.test.chino.io/v1<br>  <strong>Please</strong>, <em>notice that there is no slash at end of the URL.</em></li>
+<li><code>chino-id</code><br>  the Chino customer id that you own</li>
+<li><code>chino-key</code><br>  one of the Chino customer key associated with your account</li>
+</ul>
+<p><strong>Note:</strong> creating a client in this way is meant for development or for <em>authentication</em> purpose, since this grant to client no restriction on call permissions.</p>
+<p>Now we have a client object. Let's us make a call to Chino APIs. For example we create a repository on Chino, using as parameter the right object (according to Chino API docs):</p>
+<pre class="prettyprint source"><code>const data = {
+    description: &quot;This is a test repository&quot;
+}
+
+chinoClient.repositories.create(data);</code></pre><h3>Set Chino credentials for application user</h3><p>OK, we created a Chino client for a developer. Now we will follow these basic steps to set up a client for an application user. This client will be limited by user Chino permissions (see docs for further information on permissions).</p>
+<p>First of all we need to create a Chino Application and set its credentials (application id and application secret). These properties are kept private for security reasons.</p>
+<pre class="prettyprint source"><code>const appData = {
+    grant_type: &quot;password&quot;,
+    name: &quot;Application test&quot;
+}
+
+chinoClient.applications.create(appData)
+    .then((app) => {
+        // enable chino client to authenticate application users 
+        chinoClient.setAuth(app.app_id, app.app_secret);
+    })
+    .catch((error) => {
+        // manage request error
+        console.log(error);
+    });</code></pre><p>Then you can authenticate a user and retrieve an access token, that will be used later for accessing Chino API (<em>Attention</em>: the access token has an expiration, see docs for managing it).</p>
+<pre class="prettyprint source"><code> let token = &quot;&quot;;
+
+ chinoClient.auth.login(username, password)
+    .then((auth) => {
+        token = auth.access_token;
+    })</code></pre><p>Now that we have a token, we can create a client for an application user:</p>
+<pre class="prettyprint source"><code>const userClient = new Chino(&quot;base-url&quot;, token);</code></pre><p>This time, Chino constructor parameters are:</p>
+<ul>
+<li><code>base-url</code><br>  see above for description</li>
+<li><code>token</code>
+  this is the user access token we retrieved before. It is used to identify user calls.</li>
+</ul>
+<p>In the end we can try to make a call as user application:</p>
+<pre class="prettyprint source"><code>userClient.users.current()
+    .then((user) => {
+        // show current user details
+        console.log(user);
+    }
+    .catch((error) => {
+        // manage request error
+    }</code></pre><h3>Notes</h3><p> Since requesting to REST service could require some time, each call is made asynchronously. As a result, each function return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> object that will be resolved if client receive a 200 (<code>OK</code>) status code as response from server, otherwise it will be rejected.</p>
+<p> Moreover, if you have to make sequential calls, you have to chain returned promises from each call.</p>
+<h3>Examples</h3><p>For further information view <a href="https://danibix95.github.io/chino-nodejs/">SDK docs</a>. You can view an example of application in the <a href="https://github.com/chinoio/chino-nodejs/tree/example"><code>example</code></a> branch.</p>
+<h2>License</h2><p>MIT</p></article>
     </section>
 
 
@@ -68,7 +136,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 20 2017 21:47:19 GMT+0000 (UTC) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 17:25:49 GMT+0000 (UTC) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
