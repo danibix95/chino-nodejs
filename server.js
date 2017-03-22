@@ -16,7 +16,7 @@ const appData = {
 let patientsID, physiciansID, repositoryID, recipesID, appID;
 let pat1id, pat2id, collPat1, collPat2;
 
-/* ======== SET UP THE ENVIRONMENT FOR EXAMPLE======== */
+/* ======== SET UP THE ENVIRONMENT FOR EXAMPLE ======== */
 const recipesSchema = {
   description: "Recipe",
   structure: {
@@ -187,8 +187,11 @@ chino.applications.create(appData)
       ])
     })
     .then(result => {
-        pat1.attributes.recipeCollection = collPat1 = result[0].collection_id;
-        pat2.attributes.recipeCollection = collPat2 = result[1].collection_id;
+        collPat1 = result[0].collection_id;
+        collPat2 = result[1].collection_id;
+
+        pat1.attributes.recipeCollection = result[0].collection_id;
+        pat2.attributes.recipeCollection = result[1].collection_id;
 
         return chino.userSchemas.create(patientSchema)
     })
@@ -418,15 +421,12 @@ module.exports.addRecipe =
                 }
               };
               // update physician info
-              return chino.users.partialUpdate(physician, update)
-                  .catch((error) => {
-                    console.error(error);
-                    response.redirect("/physician");
-                  });
-
+              return chino.users.partialUpdate(physician, update);
             }
           })
+          /* redirect after success */
           .then(() => { response.redirect("/physician"); })
+          /* redirect after error */
           .catch((error) => {
             console.error(error);
             response.redirect("/physician");
@@ -488,12 +488,12 @@ module.exports.login =
         .then((result) => {
             let bearer = result.access_token;
 
-            // set cookie to let user to access (expires after 10 minutes)
+            // set cookie to let user to access
             response.cookie(
               "bearer",
               bearer,
               {
-                expires  : new Date(Date.now() + result.expires_in*240),
+                expires  : new Date(Date.now() + result.expires_in*200),
                 httpOnly : true,
                 sameSite : true
               }

@@ -15,7 +15,7 @@ const minify = require("express-minify");
 
 const server = require("./server.js")
 
-/* APPLICATION INITALIZATION */
+/* APPLICATION INITIALIZATION */
 const app = express();
 
 app.set("title", "Chino API test");
