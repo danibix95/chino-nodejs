@@ -6,17 +6,16 @@ const customerKey = process.env.CHINO_KEY; // insert here your Chino Customer KE
 
 const chino = new Chino(baseUrl, customerId, customerKey);
 
-// application data
+/* ======== SET UP THE ENVIRONMENT FOR EXAMPLE ======== */
 const appData = {
   name : "Application for example",
   grant_type: "password"
 }
 
-// set constant ID
+// define useful IDs
 let patientsID, physiciansID, repositoryID, recipesID, appID;
 let pat1id, pat2id, collPat1, collPat2;
 
-/* ======== SET UP THE ENVIRONMENT FOR EXAMPLE ======== */
 const recipesSchema = {
   description: "Recipe",
   structure: {
@@ -85,6 +84,7 @@ const patientSchema = {
     ]
   }
 };
+
 const pat1 = {
   attributes: {
     CF: "MRARSS70A01L781H",
@@ -148,6 +148,7 @@ const physicianSchema = {
     ]
   }
 };
+
 const phy = {
   attributes: {
     CF: "BNDPRZ70M60L7861K",
@@ -166,7 +167,7 @@ const repoDesc = {
   description : "Repository for application example"
 }
 
-// create a Chino application
+// create a Chino objects needed by example
 chino.applications.create(appData)
     .then((app) => {
       chino.setAuth(app.app_id, app.app_secret);
@@ -269,6 +270,7 @@ chino.applications.create(appData)
     });
 /* ======================================== */
 
+/* ==== APPLICATION EXAMPLE FUNCTIONS ===== */
 module.exports.physician =
   function (request, response) {
     let data = { patients : [], message : ""}
@@ -479,7 +481,6 @@ module.exports.isPatient =
         })
         .catch((error) => { response.redirect('/'); });
   };
-/* ----------------------- */
 
 module.exports.login =
   function (request, response) {
