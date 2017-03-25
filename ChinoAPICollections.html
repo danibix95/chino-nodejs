@@ -268,7 +268,7 @@
 
     
 
-    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoException>}</span></h4>
 
     
 
@@ -396,7 +396,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Collection object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -408,7 +408,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoException></span>
 
 
     </dd>
@@ -423,7 +423,7 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(collectionId, force)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(collectionId, force)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Success, objects.ChinoException>}</span></h4>
 
     
 
@@ -588,7 +588,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -600,7 +600,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Success, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Success, objects.ChinoException></span>
 
 
     </dd>
@@ -615,7 +615,7 @@
 
     
 
-    <h4 class="name" id="details"><span class="type-signature"></span>details<span class="signature">(collectionId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="details"><span class="type-signature"></span>details<span class="signature">(collectionId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoException>}</span></h4>
 
     
 
@@ -743,7 +743,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Collection object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -755,7 +755,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoException></span>
 
 
     </dd>
@@ -770,7 +770,7 @@
 
     
 
-    <h4 class="name" id="insertDocument"><span class="type-signature"></span>insertDocument<span class="signature">(collectionId, documentId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="insertDocument"><span class="type-signature"></span>insertDocument<span class="signature">(collectionId, documentId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoException>}</span></h4>
 
     
 
@@ -921,7 +921,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -933,7 +933,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Document, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Document, objects.ChinoException></span>
 
 
     </dd>
@@ -948,7 +948,7 @@
 
     
 
-    <h4 class="name" id="list"><span class="type-signature"></span>list<span class="signature">(offset, limit)</span><span class="type-signature"> &rarr; {Promise.&lt;Array, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="list"><span class="type-signature"></span>list<span class="signature">(offset, limit)</span><span class="type-signature"> &rarr; {Promise.&lt;Array, objects.ChinoException>}</span></h4>
 
     
 
@@ -1113,7 +1113,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Collection object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -1125,7 +1125,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;Array, objects.ChinoException></span>
 
 
     </dd>
@@ -1140,7 +1140,7 @@
 
     
 
-    <h4 class="name" id="listDocuments"><span class="type-signature"></span>listDocuments<span class="signature">(collectionId, offset, limit)</span><span class="type-signature"> &rarr; {Promise.&lt;Array, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="listDocuments"><span class="type-signature"></span>listDocuments<span class="signature">(collectionId, offset, limit)</span><span class="type-signature"> &rarr; {Promise.&lt;Array, objects.ChinoException>}</span></h4>
 
     
 
@@ -1333,7 +1333,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Documents object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -1345,7 +1345,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Array, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;Array, objects.ChinoException></span>
 
 
     </dd>
@@ -1360,7 +1360,7 @@
 
     
 
-    <h4 class="name" id="removeDocument"><span class="type-signature"></span>removeDocument<span class="signature">(collectionId, documentId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="removeDocument"><span class="type-signature"></span>removeDocument<span class="signature">(collectionId, documentId)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoException>}</span></h4>
 
     
 
@@ -1511,7 +1511,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Success object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -1523,7 +1523,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Document, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Document, objects.ChinoException></span>
 
 
     </dd>
@@ -1538,7 +1538,7 @@
 
     
 
-    <h4 class="name" id="search"><span class="type-signature"></span>search<span class="signature">(filter)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="search"><span class="type-signature"></span>search<span class="signature">(filter)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Document, objects.ChinoException>}</span></h4>
 
     
 
@@ -1666,7 +1666,7 @@
         
 <div class="param-desc">
     <p>A promise that return a list of Collection object
-        matching filter if resolved, otherwise throw an ChinoError
+        matching filter if resolved, otherwise throw an ChinoException
         object if rejected or was not retrieved a success status</p>
 </div>
 
@@ -1678,7 +1678,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Document, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Document, objects.ChinoException></span>
 
 
     </dd>
@@ -1693,7 +1693,7 @@
 
     
 
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(collectionId, data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoError>}</span></h4>
+    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(collectionId, data)</span><span class="type-signature"> &rarr; {Promise.&lt;objects.Collection, objects.ChinoException>}</span></h4>
 
     
 
@@ -1845,7 +1845,7 @@
         
 <div class="param-desc">
     <p>A promise that return a Collection object if resolved,
-        otherwise throw an ChinoError object if rejected
+        otherwise throw an ChinoException object if rejected
         or was not retrieved a success status</p>
 </div>
 
@@ -1857,7 +1857,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoError></span>
+<span class="param-type">Promise.&lt;objects.Collection, objects.ChinoException></span>
 
 
     </dd>
@@ -1885,7 +1885,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 22 2017 17:29:45 GMT+0000 (UTC) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Mar 25 2017 10:00:06 GMT+0000 (UTC) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
