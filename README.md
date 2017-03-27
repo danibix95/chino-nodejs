@@ -11,7 +11,11 @@ At the following links can be found:
 Before you can use Chino Node JS SDK you have to install Node JS Javascript runtime. If you haven't it yet, you can follow the [instructions](https://nodejs.org/en/download/package-manager/) provided on Node JS website.
 
 ## Installation
-Work in progress (SDK will be publish on NPM and then this section will be updated)
+To install Chino SDK in your Node JS project you can run the following command
+
+    npm install --save chinoio
+    
+The above command will download Chino SDK in your `node_modules` directory and will add the dependency in your `package.json file`.
 
 ## SDK usage example
 In this branch you can find a simple example of how use Chino SDK. You can try it cloning this branch (*example*) of the repository:
