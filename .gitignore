@@ -47,6 +47,3 @@ result.jpg
 
 # documentation
 docs
-
-# keep chino module, since it is not published yet
-!node_modules/chino-sdk
