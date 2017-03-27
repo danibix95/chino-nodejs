@@ -1,4 +1,5 @@
-const Chino = require("chino-sdk");
+// here is imported Chino SDK
+const Chino = require("chinoio");
 
 const baseUrl = "https://api.test.chino.io/v1";
 const customerId  = process.env.CHINO_ID;  // insert here your Chino Customer ID
