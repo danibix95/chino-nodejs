@@ -85,7 +85,7 @@ class ChinoAPIBlobs extends ChinoAPIBase {
                 const options = {
                   flags : "r",
                   autoClose : true,
-                  highWaterMark : 16 * 1024
+                  highWaterMark : 32 * 1024
                 };
                 const readStream = fs.createReadStream(fileName, options);
                 // hash for verifying blob integrity
@@ -102,6 +102,7 @@ class ChinoAPIBlobs extends ChinoAPIBase {
                   }
 
                   // create an array of Promises upload
+                  console.log(params)
                   chunks.push(this.call.chunk(`/blobs/${uploadId}`, chunk, params))
 
                   hash.update(chunk);
@@ -116,23 +117,31 @@ class ChinoAPIBlobs extends ChinoAPIBase {
                     // wait upload of all chunks is completed
                     Promise.all(chunks)
                         .then((result) => {
+                          console.log("Step1.1")
                           if (result.every((res) => res.result_code === 200)) {
                             return commit.call(this, uploadId)
+                                .then((blob) => {
+                                  console.log("Step3.1")
+                                  // attention: digest method can be called one for hash
+                                  if (blob.sha1 === hash.digest("hex")) {
+                                    resolve(blob);
+                                  }
+                                  else {
+                                    reject("Digest mismatch.");
+                                  }
+                                })
+                                .catch((error) => { console.log("Step3.2"); throw new objects.ChinoException(error); })
                           }
                           else {
-                            throw new objects.ChinoException(result);
+                            console.log("Step2")
+                            reject(new objects.ChinoException(result));
                           }
                         })
-                        .then((blob) => {
-                          // attention: digest method can be called one for hash
-                          if (blob.sha1 === hash.digest("hex")) {
-                            resolve(blob);
-                          }
-                          else {
-                            reject("Digest mismatch.");
-                          }
+                        .catch((error) => {
+                          console.log(chunks);  // TODO: one chunk gets an error (is rejected by something!!)
+                          reject(new objects.ChinoException({ message: "Error uploading blob data!"}));
+                          console.log("Step1.2")
                         })
-                        .catch((error) => { throw new objects.ChinoException(error); })
                 )
               }
               else {
