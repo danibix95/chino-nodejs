@@ -1,4 +1,4 @@
-This repository is no longer maintained.
+<ins>**This repository is no longer maintained.**</ins>
 
 # Chino.io Node JS client
 [![Build Status](https://travis-ci.org/danibix95/chino-nodejs.svg?branch=master)](https://travis-ci.org/danibix95/chino-nodejs) [![codecov](https://codecov.io/gh/danibix95/chino-nodejs/branch/master/graph/badge.svg)](https://codecov.io/gh/danibix95/chino-nodejs)
